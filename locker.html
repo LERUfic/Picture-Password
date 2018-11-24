@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
     	#lockimg {
     		position: fixed; 
   			top: 0; 
   			left: 0; 
-    		height: auto;
+    		height: 100%;
     		width: 100%;
 			user-drag: none; 
 			user-select: none;
@@ -31,8 +32,14 @@
 			var lockXEnd = [];
 			var lockYEnd = [];
 
+			var width = 1440;
+			var height = 960;
+
+			var heightC = $(window).height();
+			var widthC = $(window).width();
+
 			//Hairpin
-			lockXStart[0] = "NzA5";
+			lockXStart[0] = "NzA5"; //
 			lockYStart[0] = "MjI4";
 			lockXEnd[0] = "NzQy";
 			lockYEnd[0] = "MjU3";
@@ -43,8 +50,8 @@
 			lockYEnd[0] = "MjU3";
 
 			//Earring
-			lockXStart[1] = "NzA3";
-			lockYStart[1] = "MzU4";
+			lockXStart[1] = "NzA3"; //707
+			lockYStart[1] = "MzU4"; //358
 			lockXEnd[1] = "NzA3";
 			lockYEnd[1] = "MzU4";
 
@@ -54,14 +61,22 @@
 			lockYEnd[1] = "MzU4";
 
 			var countDrag = 0;
-			var countLock = 0;
+			var countLock = 1;
 
 			$("#lockimg")
 			.mousedown(function(e) {
-  				var resultX = Math.abs(atob(lockXStart[countLock]) - e.clientX);
-				var resultY = Math.abs(atob(lockYStart[countLock]) - e.clientY);
+				var xnew = atob(lockXStart[countLock])*(widthC/width);
+				var ynew = atob(lockYStart[countLock])*(heightC/height);
+				console.log(xnew + " " + ynew);
+				console.log(heightC + " " + widthC);
 
-				if(resultX <= 5 && resultY <= 5){
+  				// var resultX = Math.abs(atob(lockXStart[countLock]) - e.clientX);
+				// var resultY = Math.abs(atob(lockYStart[countLock]) - e.clientY);
+				console.log(e.clientX + " " + e.clientY);
+				var resultX = Math.abs(xnew - e.clientX);
+				var resultY = Math.abs(ynew - e.clientY);
+
+				if(resultX <= 10 && resultY <= 10){
 					console.log(e.clientX + " " + e.clientY);
 					countDrag = 1; 
 				}
@@ -73,10 +88,18 @@
     			// console.log("Koordinat Y Bawah mouseup " + e.clientY);
   			})
 			.mouseup(function(e) {
-				var resultX = Math.abs(atob(lockXEnd[countLock]) - e.clientX);
-				var resultY = Math.abs(atob(lockYEnd[countLock]) - e.clientY);
+				var xnew = atob(lockXEnd[countLock])*(widthC/width);
+				var ynew = atob(lockYEnd[countLock])*(heightC/height);
+  				// var resultX = Math.abs(atob(lockXStart[countLock]) - e.clientX);
+				// var resultY = Math.abs(atob(lockYStart[countLock]) - e.clientY);
 
-				if(resultX <= 5 && resultY <= 5 && countDrag==1){
+				var resultX = Math.abs(xnew - e.clientX);
+				var resultY = Math.abs(ynew - e.clientY);
+
+				//var resultX = Math.abs(atob(lockXEnd[countLock]) - e.clientX);
+				//var resultY = Math.abs(atob(lockYEnd[countLock]) - e.clientY);
+
+				if(resultX <= 10 && resultY <= 10 && countDrag==1){
 					countDrag = 0;
 					countLock += 1;
 
