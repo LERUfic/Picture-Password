@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    	#lockimg {
+    		position: fixed; 
+  			top: 0; 
+  			left: 0; 
+    		height: auto;
+    		width: 100%;
+			user-drag: none; 
+			user-select: none;
+			-moz-user-select: none;
+			-webkit-user-drag: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+    	}
+    </style>
+</head>
+<body>
+	<img id="lockimg" src="nako.jpg">Coba Mouse</img>
+    <script src="jquery-3.3.1.min.js"></script>
+
+    </div>
+    <script>
+		// $(document).ready(function(){
+			var lockXStart = [];
+			var lockYStart = [];
+			var lockXEnd = [];
+			var lockYEnd = [];
+
+			//Hairpin
+			lockXStart[0] = "NzA5";
+			lockYStart[0] = "MjI4";
+			lockXEnd[0] = "NzQy";
+			lockYEnd[0] = "MjU3";
+
+			lockXStart[0] = "NzA5";
+			lockYStart[0] = "MjI4";
+			lockXEnd[0] = "NzQy";
+			lockYEnd[0] = "MjU3";
+
+			//Earring
+			lockXStart[1] = "NzA3";
+			lockYStart[1] = "MzU4";
+			lockXEnd[1] = "NzA3";
+			lockYEnd[1] = "MzU4";
+
+			lockXStart[1] = "NzA3";
+			lockYStart[1] = "MzU4";
+			lockXEnd[1] = "NzA3";
+			lockYEnd[1] = "MzU4";
+
+			var countDrag = 0;
+			var countLock = 0;
+
+			$("#lockimg")
+			.mousedown(function(e) {
+  				var resultX = Math.abs(atob(lockXStart[countLock]) - e.clientX);
+				var resultY = Math.abs(atob(lockYStart[countLock]) - e.clientY);
+
+				if(resultX <= 5 && resultY <= 5){
+					console.log(e.clientX + " " + e.clientY);
+					countDrag = 1; 
+				}
+				else{
+					// console.log("Gagal");
+				}
+
+    			// console.log("Koordinat X Bawah mouseup " + e.clientX);
+    			// console.log("Koordinat Y Bawah mouseup " + e.clientY);
+  			})
+			.mouseup(function(e) {
+				var resultX = Math.abs(atob(lockXEnd[countLock]) - e.clientX);
+				var resultY = Math.abs(atob(lockYEnd[countLock]) - e.clientY);
+
+				if(resultX <= 5 && resultY <= 5 && countDrag==1){
+					countDrag = 0;
+					countLock += 1;
+
+					if(countLock == 2){
+						window.location.href = "https://aguelsatria.web.id";
+					}
+					//console.log("Berhasil");
+				}
+				else{
+					console.log("Gagal");
+					// console.log(e.clientX + " " + e.clientY + count);
+				}
+
+    			console.log("Koordinat X Atas mouseup " + e.clientX);
+    			console.log("Koordinat Y Atas mouseup " + e.clientY);
+  			});
+  			// .click(function(e) {
+  			// 	// console.log(btoa(358));
+  			// 	// console.log(atob("NzA3"));
+    	// 	// 	console.log("Koordinat X Atas mouseup " + e.clientX);
+    	// 	// 	console.log("Koordinat Y Atas mouseup " + e.clientY);
+  			// });
+		//});
+    </script>
+</body>
+</html>
