@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-	<img id="lockimg" src="nako.jpg">Coba Mouse</img>
+	<img id="lockimg" src="nako.jpg"></img>
     <script src="jquery-3.3.1.min.js"></script>
 
     </div>
@@ -33,32 +33,27 @@
 			var lockYEnd = [];
 
 			var width = 1440;
-			var height = 960;
+			var height = 587;
 
 			var heightC = $(window).height();
 			var widthC = $(window).width();
 
 			//Hairpin
-			lockXStart[0] = "NzA5"; //
-			lockYStart[0] = "MjI4";
-			lockXEnd[0] = "NzQy";
-			lockYEnd[0] = "MjU3";
-
-			lockXStart[0] = "NzA5";
-			lockYStart[0] = "MjI4";
-			lockXEnd[0] = "NzQy";
-			lockYEnd[0] = "MjU3";
+			lockXStart[0] = "NzA4"; //708
+			lockYStart[0] = "MTM5"; //139
+			lockXEnd[0] = "NzQz"; //743
+			lockYEnd[0] = "MTU2"; //156
 
 			//Earring
-			lockXStart[1] = "NzA3"; //707
-			lockYStart[1] = "MzU4"; //358
-			lockXEnd[1] = "NzA3";
-			lockYEnd[1] = "MzU4";
+			lockXStart[1] = "NzA2"; //706
+			lockYStart[1] = "MjE4"; //218
+			lockXEnd[1] = "NzA2";
+			lockYEnd[1] = "MjE4";
 
-			lockXStart[1] = "NzA3";
-			lockYStart[1] = "MzU4";
-			lockXEnd[1] = "NzA3";
-			lockYEnd[1] = "MzU4";
+			lockXStart[2] = "MTQzOQ=="; //1439
+			lockYStart[2] = "ODM2"; //836
+			lockXEnd[2] = "MTQzOQ==";
+			lockYEnd[2] = "ODM2";
 
 			var countDrag = 0;
 			var countLock = 0;
@@ -68,61 +63,61 @@
 				var xnew = atob(lockXStart[countLock])*(widthC/width);
 				var ynew = atob(lockYStart[countLock])*(heightC/height);
 				console.log(xnew + " " + ynew);
-				console.log(heightC + " " + widthC);
+				// console.log(heightC + " " + widthC);
 
-  				// var resultX = Math.abs(atob(lockXStart[countLock]) - e.clientX);
-				// var resultY = Math.abs(atob(lockYStart[countLock]) - e.clientY);
-				console.log(e.clientX + " " + e.clientY);
+				// console.log(e.clientX + " " + e.clientY);
 				var resultX = Math.abs(xnew - e.clientX);
 				var resultY = Math.abs(ynew - e.clientY);
 
 				if(resultX <= 10 && resultY <= 10){
-					console.log(e.clientX + " " + e.clientY);
+					//console.log(e.clientX + " " + e.clientY);
+					console.log("Mouse Down");
 					countDrag = 1; 
 				}
 				else{
 					// console.log("Gagal");
 				}
 
-    			// console.log("Koordinat X Bawah mouseup " + e.clientX);
-    			// console.log("Koordinat Y Bawah mouseup " + e.clientY);
   			})
 			.mouseup(function(e) {
 				var xnew = atob(lockXEnd[countLock])*(widthC/width);
 				var ynew = atob(lockYEnd[countLock])*(heightC/height);
 				console.log(xnew + " " + ynew);
-				console.log(heightC + " " + widthC);
+				// console.log(heightC + " " + widthC);
 
 				var resultX = Math.abs(xnew - e.clientX);
 				var resultY = Math.abs(ynew - e.clientY);
 
-				//var resultX = Math.abs(atob(lockXEnd[countLock]) - e.clientX);
-				//var resultY = Math.abs(atob(lockYEnd[countLock]) - e.clientY);
-
 				if(resultX <= 10 && resultY <= 10 && countDrag==1){
+					console.log("Mouse Up");
 					countDrag = 0;
 					countLock += 1;
+
+					// console.log(atob("MTQzOQ=="));
+					// console.log(atob("ODM2"));
 
 					if(countLock == 2){
 						window.location.href = "https://aguelsatria.web.id";
 					}
-					//console.log("Berhasil");
+					// else{
+					// 	console.log("gagal");
+					// }
 				}
 				else{
-					console.log("Gagal");
+					// console.log("Gagal");
 					// console.log(e.clientX + " " + e.clientY + count);
 				}
 
-    			console.log("Koordinat X Atas mouseup " + e.clientX);
-    			console.log("Koordinat Y Atas mouseup " + e.clientY);
+    			// console.log("Koordinat X Atas mouseup " + e.clientX);
+    			// console.log("Koordinat Y Atas mouseup " + e.clientY);
+  			})
+  			.click(function(e) {
+  				// console.log(btoa(310));
+  				// console.log(atob("NzA3"));
+    			// console.log(btoa(e.clientX) + " Koordinat X Atas mouseup " + e.clientX);
+    			// console.log(btoa(e.clientY) + " Koordinat Y Atas mouseup " + e.clientY);
   			});
-  			// .click(function(e) {
-  			// 	// console.log(btoa(358));
-  			// 	// console.log(atob("NzA3"));
-    	// 	// 	console.log("Koordinat X Atas mouseup " + e.clientX);
-    	// 	// 	console.log("Koordinat Y Atas mouseup " + e.clientY);
-  			// });
-		//});
+		// });
     </script>
 </body>
 </html>
