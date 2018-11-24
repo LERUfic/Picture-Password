@@ -61,7 +61,7 @@
 			lockYEnd[1] = "MzU4";
 
 			var countDrag = 0;
-			var countLock = 1;
+			var countLock = 0;
 
 			$("#lockimg")
 			.mousedown(function(e) {
@@ -90,8 +90,8 @@
 			.mouseup(function(e) {
 				var xnew = atob(lockXEnd[countLock])*(widthC/width);
 				var ynew = atob(lockYEnd[countLock])*(heightC/height);
-  				// var resultX = Math.abs(atob(lockXStart[countLock]) - e.clientX);
-				// var resultY = Math.abs(atob(lockYStart[countLock]) - e.clientY);
+				console.log(xnew + " " + ynew);
+				console.log(heightC + " " + widthC);
 
 				var resultX = Math.abs(xnew - e.clientX);
 				var resultY = Math.abs(ynew - e.clientY);
